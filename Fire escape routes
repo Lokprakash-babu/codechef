@@ -1,0 +1,126 @@
+Problem link: https://www.codechef.com/problems/FIRESC
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define vi vector<long long>
+#define r(i, a) for(int i=0; i<a; i++)
+#define re(i, a, b) for(int i=a; i<b; i++)
+#define inp(a,b) cin>>a>>b
+#define in(a) cin>>t
+#define pb push_back
+#define mod 1000000007
+#define ma unordered_map<long long>
+//
+//class node{
+//    public:
+//    ll data;
+//    node *left;
+//    node *right;
+//    node (ll val){
+//        data=val;
+//        left = right = NULL;
+//    }
+//    
+//};
+//
+//node *insert(ll val, node *root){
+//    if(root==NULL){
+//        return new node(val);
+//    }
+//    else if(val>root->data){
+//        root->right = insert(val, root->right); 
+//    }
+//    else if(val<=root->data){
+//        root->left = insert(val, root->left);
+//    }
+//}
+//
+//void inorder(node *root){
+//    if(root!=NULL){
+//        inorder(root->left);
+//        cout<<root->data<<" ";
+//        inorder(root->right);
+//    }
+//}
+//
+//
+//ll findheight(node *root){
+//    if(root==NULL)
+//        return 0;
+//    ll l=0,r=0;
+//    if(root->left!=NULL) l=findheight(root->left);
+//    if(root->right!=NULL) r=findheight(root->right);
+//    return max(l,r)+1;
+//}
+
+//ll n;
+vector<int>v[100001];
+bool vis[100001];
+ll res=1;
+ll mul=0;
+void dfs(ll i){
+    
+    vis[i]=true;
+    mul++;
+    for(auto x:v[i]){
+        if(!vis[x]){
+            
+            dfs(x);
+    }
+}
+}
+void func(){ 
+    res=1;
+    ll n, f;
+    cin>>n>>f;
+    for(int i=0; i<n+1; i++){
+        v[i].clear();
+        vis[i]=false;
+    }
+    while(f--){
+        ll a, b;
+        cin>>a>>b;
+        v[a].push_back(b);
+        v[b].push_back(a);
+    }
+    ll count=0;
+    for(int i=1; i<=n; i++){
+        if(!vis[i]){
+            mul=0;
+            count++, dfs(i);
+            res=(res*mul)%(1000000007);
+        }
+        
+    }
+    cout<<count<<" "<<res<<endl;
+        
+}
+
+int main(){
+
+ios_base::sync_with_stdio(false);
+cin.tie(NULL);
+cout.tie(NULL);
+
+//sieve();
+ 
+int t;
+cin >> t;
+for(ll i=1; i<=t; i++)
+{
+    
+    func();
+//    cout<<endl;
+//cout<<func()<<endl;
+
+//if(func())
+//    cout<<"Yes"<< endl;
+//else
+//    cout <<"No"<<endl; 
+//cout<<"Case:"<<i<<" "<<     <<endl;
+}
+return 0;
+}
